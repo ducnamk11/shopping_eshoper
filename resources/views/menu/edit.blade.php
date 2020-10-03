@@ -1,34 +1,28 @@
 @extends('layouts.admin')
-@section('title','Category Add')
+@section('title','Menu Edit')
 @section('content')
     <div class="content-wrapper">
-    @include('partials.content-header',['name'=>'Category', 'key'=>'Edit'])
-
-    <!-- Content Header (Page header) -->
+        @include('partials.content-header',['name'=>'Menu', 'key'=>'Edit'])
         <div class="content-header">
             <div class="container-fluid">
-
                 <div class="col-md-6">
-                    <form method="POST" action="{{route('category_update',['id'=>$category->id])}}">
+                    <form method="POST" action="{{route('menu_update',['id'=>$menu->id])}}">
                         @csrf
                         <div class="form-group">
-                            <label>Category</label>
+                            <label>Menu</label>
                             <input type="text" class="form-control"
-                                  value="{{$category->name}}" name="name" placeholder="Category">
-
+                                   name="name" value="{{$menu->name}}" placeholder="Category">
                         </div>
                         <div class="form-group">
-                            <label>Parent Category</label>
+                            <label>Parent Menu</label>
                             <select name="parent_id" class="form-control">
-                                <option value="0">--Select--</option>
-                                {!! $htmlOption !!}
+                                <option value="0">--Parent Menu--</option>
+                                {!! $optionSelect !!}
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
-                </div><!-- /.col -->
+                </div>
             </div>
-
-
         </div>
 @stop

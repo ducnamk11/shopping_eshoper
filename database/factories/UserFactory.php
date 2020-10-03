@@ -29,8 +29,16 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(\App\Models\Category::class, function (Faker $faker) {
     $name = $faker->name;
     return [
-        'name' =>$name ,
-        'parent_id' => rand(1,4),
-        'slug'=>str::slug($name),
+        'name' => $name,
+        'parent_id' => rand(1, 4),
+        'slug' => str::slug($name),
+    ];
+});
+$factory->define(\App\Models\Menu::class, function (Faker $faker) {
+    $name = $faker->name;
+    return [
+        'name' => $name,
+        'parent_id' => rand(1, 4),
+        'slug' => str::slug($name),
     ];
 });

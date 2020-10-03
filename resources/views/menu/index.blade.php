@@ -3,7 +3,6 @@
 @section('content')
     <div class="content-wrapper">
         @include('partials.content-header',['name'=>'Menu', 'key'=>'Home'])
-        <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="col-md-8">
@@ -33,18 +32,18 @@
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$menu->name}}</td>
                                 <td>
-                                    <a href="{{route('category_edit',['id'=>$menu->id])}}" class="btn btn-primary"> Edit</a>
-                                    <a href="{{route('category_delete',['id'=>$menu->id])}}" class="btn btn-danger"> Delete</a>
+                                    <a href="{{route('menu_edit',['id'=>$menu->id])}}" class="btn btn-primary"> Edit</a>
+                                    <a href="{{route('menu_delete',['id'=>$menu->id])}}" class="btn btn-danger">
+                                        Delete</a>
                                 </td>
                             </tr>
                         @endforeach
-
                         </tbody>
                     </table>
-<!--                    --><?php //echo $menus->links(); ?>
-                </div><!-- /.col -->
-            </div><!-- /.containew
+                    <?php  echo $menus->links(); ?>
+                </div>
+            </div>
 
 
-    </div>
+        </div>
 @stop
