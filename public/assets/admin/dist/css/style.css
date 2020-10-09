@@ -1,0 +1,16 @@
+.bootstrap-tagsinput .tag{
+  background: #464646;
+  border-radius: 5px;
+  padding:2px;
+  font-weight: bold;
+
+}
+.alert-danger {
+  margin-top: 5px;
+  color: #fff;
+  background: #ff96a0;
+  border-color: #967477;
+  height: 35px;
+  line-height: 8px;
+  font-size: 15px;
+}

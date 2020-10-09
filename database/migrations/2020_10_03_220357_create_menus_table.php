@@ -18,6 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('parent_id')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -27,8 +28,9 @@ class CreateMenusTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(Blueprint $table)
     {
         Schema::dropIfExists('menus');
+
     }
 }

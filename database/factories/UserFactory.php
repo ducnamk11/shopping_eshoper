@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'email' => 'admin@gmail.com',
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
@@ -30,7 +30,7 @@ $factory->define(\App\Models\Category::class, function (Faker $faker) {
     $name = $faker->name;
     return [
         'name' => $name,
-        'parent_id' => rand(1, 4),
+        'parent_id' =>  0,
         'slug' => str::slug($name),
     ];
 });
@@ -38,7 +38,18 @@ $factory->define(\App\Models\Menu::class, function (Faker $faker) {
     $name = $faker->name;
     return [
         'name' => $name,
-        'parent_id' => rand(1, 4),
+        'parent_id' => 0,
         'slug' => str::slug($name),
+    ];
+});
+
+$factory->define(\App\Models\Product::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'price' => rand(100, 1000)*1000,
+        'feature_image_path' => $faker->imageUrl(),
+        'content' => $faker->paragraph(8),
+        'user_id' => 0,
+        'category_id' => 0,
     ];
 });

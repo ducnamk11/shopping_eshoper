@@ -19,14 +19,14 @@ class CategoryController extends Controller
     public function index()
     {
 
-        return view('category.index', [
+        return view('admin.category.index', [
             'categories' => Category::latest()->paginate(5),
         ]);
     }
 
     public function create()
     {
-        return view('category.add', [
+        return view('admin.category.add', [
             'htmlOption' => $this->getCategory($parentId = '')
         ]);
     }
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = $this->category->findOrFail($id);
-        return view('category.edit', [
+        return view('admin.category.edit', [
             'category' => $category,
             'htmlOption' => $this->getCategory($category['parent_id'])
         ]);
