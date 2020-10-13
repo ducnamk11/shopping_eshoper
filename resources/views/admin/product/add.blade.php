@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin')
 @section('title','Product Add')
 
 @section('css')
@@ -11,7 +11,7 @@
 @endsection
 @section('content')
     <div class="content-wrapper">
-    @include('partials.content-header',['name'=>'Product', 'key'=>'Add'])
+    @include('admin.partials.content-header',['name'=>'Product', 'key'=>'Add'])
 
     <!-- Content Header (Page header) -->
         <div class="content-header">

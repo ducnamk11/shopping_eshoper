@@ -21,6 +21,12 @@
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
+                this is fual
+                @if(session()->get('fail'))
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        {{ session()->get('fail') }}
+                    </div>
+                @endif
                 <form class="form-signin" method="post" action="{{route('admin_login_post')}}">
                     @csrf
                     <input type="email" class="form-control" name="email" placeholder="Email" required autofocus>

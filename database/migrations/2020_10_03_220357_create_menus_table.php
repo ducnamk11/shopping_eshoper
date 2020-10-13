@@ -28,9 +28,8 @@ class CreateMenusTable extends Migration
      *
      * @return void
      */
-    public function down(Blueprint $table)
+    public function down()
     {
         Schema::dropIfExists('menus');
-
     }
 }

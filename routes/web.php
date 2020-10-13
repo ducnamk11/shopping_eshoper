@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/category/{id}/{slug}', 'HomeController@category')->name('category');
+
 
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@loginAdmin')->name('login');
+    Route::get('/home', 'AdminController@index')->name('admin_index');
     Route::post('/', 'AdminController@postLoginAdmin')->name('admin_login_post');
     Route::prefix('categories')->group(function () {
         Route::get('/', 'CategoryController@index')->name('category_index');
@@ -59,6 +60,29 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', 'SettingController@edit')->name('setting_edit');
         Route::post('/update/{id}', 'SettingController@update')->name('setting_update');
         Route::get('/delete/{id}', 'SettingController@delete')->name('setting_delete');
+    });
+    Route::prefix('staffs')->group(function () {
+        Route::get('/', 'StaffController@index')->name('staff_index');
+        Route::get('/create', 'StaffController@create')->name('staff_create');
+        Route::post('/store', 'StaffController@store')->name('staff_store');
+        Route::get('/edit/{id}', 'StaffController@edit')->name('staff_edit');
+        Route::post('/update/{id}', 'StaffController@update')->name('staff_update');
+        Route::get('/delete/{id}', 'StaffController@delete')->name('staff_delete');
+    });
+    Route::prefix('permissions')->group(function () {
+        Route::get('/', 'PermissionController@index')->name('permission_index');
+         Route::post('/store', 'PermissionController@store')->name('permission_store');
+        Route::get('/edit/{id}', 'PermissionController@edit')->name('permission_edit');
+        Route::post('/update/{id}', 'PermissionController@update')->name('permission_update');
+        Route::get('/delete/{id}', 'PermissionController@delete')->name('permission_delete');
+    });
+    Route::prefix('roles')->group(function () {
+        Route::get('/', 'RoleController@index')->name('role_index');
+        Route::get('/create', 'RoleController@create')->name('role_create');
+        Route::post('/store', 'RoleController@store')->name('role_store');
+        Route::get('/edit/{id}', 'RoleController@edit')->name('role_edit');
+        Route::post('/update/{id}', 'RoleController@update')->name('role_update');
+        Route::get('/delete/{id}', 'RoleController@delete')->name('role_delete');
     });
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => []], function () {

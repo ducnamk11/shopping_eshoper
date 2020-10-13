@@ -1,8 +1,8 @@
-@extends('layouts.admin')
+@extends('admin')
 @section('title','Setting Index')
 @section('content')
     <div class="content-wrapper">
-    @include('partials.content-header',['name'=>'Setting', 'key'=>'Home'])
+    @include('admin.partials.content-header',['name'=>'Setting', 'key'=>'admin.home'])
     <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">

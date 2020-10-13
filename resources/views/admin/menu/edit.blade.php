@@ -1,8 +1,8 @@
-@extends('layouts.admin')
+@extends('admin')
 @section('title','Menu Edit')
 @section('content')
     <div class="content-wrapper">
-        @include('partials.content-header',['name'=>'Menu', 'key'=>'Edit'])
+        @include('admin.partials.content-header',['name'=>'Menu', 'key'=>'Edit'])
         <div class="content-header">
             <div class="container-fluid">
                 <div class="col-md-6">

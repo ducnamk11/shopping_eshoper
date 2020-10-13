@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('admin')
 @section('title','Setting Add')
 
 @section('content')
     <div class="content-wrapper">
-    @include('partials.content-header',['name'=>'Setting', 'key'=>'Add'])
+    @include('admin.partials.content-header',['name'=>'Setting', 'key'=>'Add'])
 
     <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -16,9 +16,7 @@
                             <label>Config Key</label>
                             <input type="text" class="form-control" value="{{old('name')}}"
                                    name="config_key" placeholder="Setting">
-                            @error('config_key')
-                            <div class="alert alert-danger"> {{$message}}</div>
-                            @enderror
+                         i
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Config Value</label>

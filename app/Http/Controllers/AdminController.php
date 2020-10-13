@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        return view('admin.home');
+    }
     public function loginAdmin()
     {
       if (auth()->check()){
-          return view('home');
+          return redirect()->route('admin_index');
       }
         return view('login');
     }
@@ -21,7 +25,10 @@ class AdminController extends Controller
            'email' => $request->email,
            'password' => $request->password
        ], $remember)) {
-           return redirect()->to('/home');
+           return redirect()->route('admin_index');
+       }else{
+           return redirect()->route('login')->with('fail', 'Password or email is incorrect!');
+
        }
    }
 }
