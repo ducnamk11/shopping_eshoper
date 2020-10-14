@@ -17,11 +17,12 @@ Route::get('/category/{id}/{slug}', 'HomeController@category')->name('category')
 Route::get('/search', 'HomeController@search')->name('search');
 
 
+Route::get('/admin', 'AdminController@loginAdmin')->name('admin_login');
+Route::post('/admin', 'AdminController@postLoginAdmin')->name('admin_login_post');
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@loginAdmin')->name('login');
-    Route::get('/home', 'AdminController@index')->name('admin_index');
-    Route::post('/', 'AdminController@postLoginAdmin')->name('admin_login_post');
+Route::group(['prefix' => 'admin','middleware' => ['auth:staff']  ], function(){ // 'middleware' => ['guest:staff']
+    Route::get('/logout', 'AdminController@postLogout')->name('admin_logout');
+    Route::get('/home', 'AdminController@index')->name('admin_home');
     Route::prefix('categories')->group(function () {
         Route::get('/', 'CategoryController@index')->name('category_index');
         Route::get('/create', 'CategoryController@create')->name('category_create');
@@ -89,3 +90,7 @@ Route::prefix('admin')->group(function () {
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => []], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

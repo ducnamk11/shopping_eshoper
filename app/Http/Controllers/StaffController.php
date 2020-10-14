@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StaffStore;
 use App\Http\Requests\StaffUpdate;
 use App\Modes\Staff;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -32,7 +32,7 @@ class StaffController extends Controller
         $staff = Staff::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
         $staff->syncRoles($request->role);
         return redirect()->route('staff_index')->with('success', 'Create Staff successfully!');
@@ -57,7 +57,7 @@ class StaffController extends Controller
             'password' => $request->password,
         ]);
         $staff->syncRoles($request->input('role'));
-         return redirect()->route('staff_index')->with('success', 'Updated Staff successfully!');
+        return redirect()->route('staff_index')->with('success', 'Updated Staff successfully!');
 
     }
 

@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('content');
             $table->integer('user_id');
             $table->integer('category_id');
+            $table->integer('view')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

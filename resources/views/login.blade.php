@@ -19,20 +19,20 @@
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <h1 class="text-center login-title">Sign in to Admin</h1>
             <div class="account-wall">
-                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                <img class="profile-img"
+                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
-                this is fual
-                @if(session()->get('fail'))
-                    <div class="alert alert-warning alert-dismissible fade show">
-                        {{ session()->get('fail') }}
-                    </div>
+                @if($errors->any())
+                   <center style="color: red">{{$errors->first()}}</center>
                 @endif
                 <form class="form-signin" method="post" action="{{route('admin_login_post')}}">
                     @csrf
-                    <input type="email" class="form-control" name="email" placeholder="Email" required autofocus>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    <input type="email" class="form-control" name="email" placeholder="Email" autofocus>
+
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Sign in</button>
+                        Sign in
+                    </button>
                     <label class="checkbox pull-left">
                         <input type="checkbox" value="remember_me">
                         Remember me
@@ -48,6 +48,6 @@
 </html>
 
 
-    <!-- Where all the magic happens -->
-    <!-- LOGIN FORM -->
+<!-- Where all the magic happens -->
+<!-- LOGIN FORM -->
 

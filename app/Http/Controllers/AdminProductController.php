@@ -55,6 +55,7 @@ class AdminProductController extends Controller
 
     public function store(StoreProduct $request)
     {
+
         try {
             DB::beginTransaction();
             $dataFeatureImage = $this->uploadFileTrait($request, 'feature_image_path', 'product');
