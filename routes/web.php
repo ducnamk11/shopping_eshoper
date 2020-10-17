@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/redirect', 'Auth\LoginController@redirectToProvider')->name('admin_redirect');
+Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category/{id}/{slug}', 'HomeController@category')->name('category');
 Route::get('/product/{id}/{slug}', 'HomeController@product_detail')->name('product_detail');
@@ -23,8 +26,7 @@ Route::get('/admin', 'AdminController@loginAdmin')->name('admin_login');
 Route::post('/admin', 'AdminController@postLoginAdmin')->name('admin_login_post');
 Route::get('/admin/logout', 'AdminController@postLogout')->name('admin_logout');
 
-
-Route::prefix('cart')->group(function () {
+Route::group(['prefix' => 'cart'], function () { //'
     Route::get('/', 'CartController@index')->name('cart_index');
     Route::get('/checkout', 'CartController@checkout')->name('cart_checkout');
     Route::get('/store/{id}', 'CartController@store')->name('cart_store');
@@ -33,8 +35,17 @@ Route::prefix('cart')->group(function () {
     Route::get('/allDelete', 'CartController@allDelete')->name('cart_all_delete');
 });
 
+Route::group(['prefix' => 'wishlist',], function () { //'middleware' => ['auth']
+    Route::get('/', 'WishlistController@index')->name('wish_index');
+    Route::get('/checkout', 'WishlistController@checkout')->name('wish_checkout');
+    Route::get('/store/{id}', 'WishlistController@store')->name('wish_store');
+    Route::get('/update/{id} }', 'WishlistController@update')->name('wish_update');
+    Route::get('/delete/{id}', 'WishlistController@delete')->name('wish_delete');
+    Route::get('/allDelete', 'WishlistController@allDelete')->name('wish_all_delete');
+});
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:staff']], function () { // 'middleware' => ['guest:staff']
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:staff']], function () {
     Route::get('/home', 'AdminController@index')->name('admin_home');
     Route::prefix('categories')->group(function () {
         Route::get('/', 'CategoryController@index')->name('category_index');
@@ -105,5 +116,3 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => []], function (
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

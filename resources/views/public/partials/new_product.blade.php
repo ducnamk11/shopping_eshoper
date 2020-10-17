@@ -23,7 +23,7 @@
             </div>
             <div class="choose">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    <li><a class="add-wishlist" href="#" data-url="{{route('wish_store',['id'=>$product->id])}}" ><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                     <li>
                         <a class="add-cart" data-url="{{route('cart_store',['id'=>$product->id])}}" href="#"><i
                                 class="fa fa-plus-square"></i>

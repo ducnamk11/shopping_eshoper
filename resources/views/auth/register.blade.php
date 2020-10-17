@@ -32,24 +32,40 @@
 <!--/head-->
 
 <body>
-    {{-- @include('public.partials.header') --}}
-    <section id="form"><!--form-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
-					</div><!--/sign up form-->
-				</div>
-			</div>
-		</div>
-	</section><!--/form-->
+    @include('public.partials.header')
+    <section id="form">
+        <!--form-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="signup-form">
+                        <!--sign up form-->
+                        <h2>New User Signup!</h2>
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <input name="name" type="text" placeholder="Name" />
+                            @if ($errors->has('name')) <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>  @endif
+                            <input name="email" type="email" placeholder="Email Address" />
+                            @if ($errors->has('email')) <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>  @endif
+                            <input name="password" type="password" placeholder="Password" />
+                            @if ($errors->has('password')) <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>  @endif
+                            <input name="password_confirmation" type="password" placeholder="Confirm password" />
+                            
+                            <button type="submit" class="btn btn-default">Signup</button>
+                        </form>
+                    </div>
+                    <!--/sign up form-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/form-->
 </body>
 
 <script src="{{asset('assets/public/js/jquery.js')}}"></script>

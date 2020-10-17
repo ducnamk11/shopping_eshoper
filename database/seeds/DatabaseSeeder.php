@@ -5,6 +5,8 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Modes\Staff;
+use Illuminate\Support\Facades\Hash;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,11 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $admin = \App\User::create(
+      
+        $admin = Staff::create(
             [
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
-                'password' => 123
+                'password' => Hash::make('12345678'), 
             ]);
 
         // create permissions

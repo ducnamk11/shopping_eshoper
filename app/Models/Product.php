@@ -26,12 +26,15 @@ class Product extends Model
         return $this->hasMany(ProductImage::class, 'product_id');
     }
 
-
-
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id')
             ->withTimestamps();
+    }
+    
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class);
     }
 
     public function delete()
@@ -39,5 +42,4 @@ class Product extends Model
         $this->images()->delete();
         return parent::delete();
     }
-
 }

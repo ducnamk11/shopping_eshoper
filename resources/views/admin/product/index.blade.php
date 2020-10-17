@@ -2,7 +2,7 @@
 @section('title','Product Index')
 @section('content')
     <div class="content-wrapper">
-    @include('admin.partials.content-header',['name'=>'Product', 'key'=>'admin.home'])
+    @include('admin.partials.content-header',['name'=>'Product', 'key'=>'Index'])
     <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">

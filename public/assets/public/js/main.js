@@ -48,14 +48,15 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             success: function (data) {
+                location.reload();
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Add a product to Cart',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 3000
                 });
-                location.reload();
+
             }
         });
     }
@@ -122,7 +123,6 @@ $(document).ready(function () {
             },
             buttonsStyling: false
         })
-
         swalWithBootstrapButtons.fire({
             title: 'Are you sure delete Cart?',
             icon: 'warning',
@@ -145,6 +145,53 @@ $(document).ready(function () {
                 )
             }
         })
+    }
+
+    //ADD WISH
+    $(function () {
+        $('.add-wishlist').on('click', addToWishlist);
+
+    });
+
+    function addToWishlist(event) {
+        event.preventDefault();
+        let url = $(this).data('url'); 
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                location.reload();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Add a product to Wish!',
+                    timer: 3000
+                });
+            }
+        });
+    }
+
+    //delete  WISH
+    $(function () {
+        $('.delete-wishlist').on('click', deleteFromWishlist);
+
+    });
+    function deleteFromWishlist(event) {
+        event.preventDefault();
+        let url = $(this).data('url'); 
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                location.reload();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Delete a product from wish!',
+                    timer: 3000
+                });
+            }
+        });
     }
 });
 
