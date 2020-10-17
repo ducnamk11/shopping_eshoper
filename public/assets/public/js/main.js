@@ -30,3 +30,122 @@ $(document).ready(function () {
         });
     });
 });
+
+
+$(document).ready(function () {
+
+    //ADD CART
+    $(function () {
+        $('.add-cart').on('click', addToCart);
+
+    });
+
+    function addToCart(event) {
+
+        event.preventDefault();
+        let url = $(this).data('url');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Add a product to Cart',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                location.reload();
+            }
+        });
+    }
+
+    //DELETTE
+
+    $(function () {
+        $('.cart_quantity_delete').on('click', deleteFromCart);
+    });
+
+    function deleteFromCart(event) {
+        event.preventDefault();
+        let url = $(this).data('url');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Deleted product from Cart',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                location.reload();
+            }
+        });
+    }
+    //Update
+
+    $(function () {
+        $('.cart_quantity_input, input[type=number]').on('change', updateCart); //'.quantity, input[type=number]'
+    });
+
+    function updateCart(qty) {
+
+        let url = $(this).data('url');
+        var qty = $(this).val();
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: { qty: qty },
+            success: function (data) {
+                location.reload();
+            }
+        });
+    }
+
+    //DELETTE all cart
+
+    $(function () {
+        $('#cart_all_delete').on('click', deleteAllCart);
+    });
+
+    function deleteAllCart(event) {
+        event.preventDefault();
+        let url = $(this).data('url');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success m-3',
+                cancelButton: 'btn btn-danger m-3'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure delete Cart?',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function (data) {
+                        location.reload();
+                    }
+                });
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
+    }
+});
+
+

@@ -31,10 +31,9 @@
 
 <body>
 @include('public.partials.header')
-@include('public.partials.slider')
-
-
-
+@if(!isset($key))
+    @include('public.partials.slider')
+@endif
 <section>
     <div class="container">
         <div class="row">
@@ -47,11 +46,11 @@
 @include('public.partials.footer')
 
 <script src="{{asset('assets/public/js/jquery.js')}}"></script>
-<script src="{{asset('assets/public/')}}"></script>
 <script src="{{asset('assets/public/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/public/js/jquery.scrollUp.min.js')}}"></script>
 <script src="{{asset('assets/public/js/price-range.js')}}"></script>
 <script src="{{asset('assets/public/js/jquery.prettyPhoto.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{asset('assets/public/js/main.js')}}"></script>
 </body>
 </html>

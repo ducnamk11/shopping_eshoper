@@ -12,16 +12,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category/{id}/{slug}', 'HomeController@category')->name('category');
+Route::get('/product/{id}/{slug}', 'HomeController@product_detail')->name('product_detail');
 Route::get('/search', 'HomeController@search')->name('search');
 
 
 Route::get('/admin', 'AdminController@loginAdmin')->name('admin_login');
 Route::post('/admin', 'AdminController@postLoginAdmin')->name('admin_login_post');
+Route::get('/admin/logout', 'AdminController@postLogout')->name('admin_logout');
 
-Route::group(['prefix' => 'admin','middleware' => ['auth:staff']  ], function(){ // 'middleware' => ['guest:staff']
-    Route::get('/logout', 'AdminController@postLogout')->name('admin_logout');
+
+Route::prefix('cart')->group(function () {
+    Route::get('/', 'CartController@index')->name('cart_index');
+    Route::get('/checkout', 'CartController@checkout')->name('cart_checkout');
+    Route::get('/store/{id}', 'CartController@store')->name('cart_store');
+    Route::get('/update/{id} }', 'CartController@update')->name('cart_update');
+    Route::get('/delete/{id}', 'CartController@delete')->name('cart_delete');
+    Route::get('/allDelete', 'CartController@allDelete')->name('cart_all_delete');
+});
+
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:staff']], function () { // 'middleware' => ['guest:staff']
     Route::get('/home', 'AdminController@index')->name('admin_home');
     Route::prefix('categories')->group(function () {
         Route::get('/', 'CategoryController@index')->name('category_index');
@@ -73,7 +86,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:staff']  ], function(){
     });
     Route::prefix('permissions')->group(function () {
         Route::get('/', 'PermissionController@index')->name('permission_index');
-         Route::post('/store', 'PermissionController@store')->name('permission_store');
+        Route::post('/store', 'PermissionController@store')->name('permission_store');
         Route::get('/edit/{id}', 'PermissionController@edit')->name('permission_edit');
         Route::post('/update/{id}', 'PermissionController@update')->name('permission_update');
         Route::get('/delete/{id}', 'PermissionController@delete')->name('permission_delete');

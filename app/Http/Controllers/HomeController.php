@@ -14,22 +14,23 @@ class HomeController extends Controller
         view()->share([
             'categories' => Category::where('parent_id', 0)->take(6)->get(),
             'sliders' => Slider::latest()->take(3)->get(),
-        ]);
-    }
-
-    public function index()
-    {
-        return view('public.index', [
             'feature_categories' => Category::where('feature', Category::FEATURE)->get(),
             'newest_products' => Product::latest()->take(6)->get(),
             'hot_products' => Product::latest('view', 'desc')->take(15)->get(),
         ]);
     }
 
+    public function index()
+    {
+        return view('public.index');
+    }
+
     public function category($id)
     {
+        $category  =  Category::findOrFail($id);
         return view('public.category', [
-            'products_category' => Category::findOrFail($id)->products()->paginate(12),
+            'category_name' => $category->name,
+            'products_category' => $category->products()->paginate(12),
         ]);
     }
 
@@ -37,8 +38,15 @@ class HomeController extends Controller
     {
         $key = $request->search;
         return view('public.search', [
-            'key'=>$key,
-            'results' => Product::where('name', 'LIKE', '%' . $key. '%')->paginate(12),
+            'key' => $key,
+            'results' => Product::where('name', 'LIKE', '%' . $key . '%')->paginate(12),
+        ]);
+    }
+
+    public function product_detail($id)
+    {
+        return view('public.product_detail', [
+            'product' => Product::findOrFail($id),
         ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title','Home')
+@section('title','Search')
 @section('main')
 
     <div class="col-sm-9 padding-right">

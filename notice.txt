@@ -10,3 +10,15 @@
 
 
     ngoia ra dung Froala editor (it loi)
+
+
+
+- shopping cart
+https://github.com/bumbummen99/LaravelShoppingcart
+
+
+
+
+--need to 
+
+add link for slider
