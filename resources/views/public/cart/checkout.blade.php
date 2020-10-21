@@ -41,40 +41,9 @@
                     <li class="active">Check out</li>
                 </ol>
             </div>
-            <div class="shopper-informations">
-                <div class="row">
-                    <div class="col-sm-8 clearfix">
-                        <div class="bill-to">
-                            <p>Bill To</p>
-                            <div class="form-one">
-                                <form accept="#">
-                                    @csrf
-                                    <input type="text" placeholder="Full Name *">
-                                    <input type="text" placeholder="Phone">
-                                    <input type="text" placeholder="Email*">
-                                    <input type="text" placeholder="Address 1 *">
-                                    <input type="text" placeholder="Address 2">
-                                </form>
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="order-message">
-                            <p>Shipping Order</p>
-                            <textarea name="message" placeholder="Notes about your order, Special Notes for Delivery"
-                                rows="10"></textarea>
-                            <label><input type="checkbox"> Shipping to bill address</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="review-payment">
-                <h2>Review & Payment</h2>
-            </div>
-
-            <div class="table-responsive cart_info">
-                <table class="table table-condensed">
+            <div class="table-responsive cart_info  container">
+                <table class="table table-condensed col-8">
                     <thead>
                         <tr class="cart_menu">
                             <td class="image">Item</td>
@@ -131,7 +100,32 @@
                         </tr>
                     </tbody>
                 </table>
-            </div> 
+            </div>
+            <div class="shopper-informations" style="margin:50px">
+                <div class="row">
+                    <div class="col-sm-10 clearfix">
+                        <div class="bill-to">
+                            <p>Bill To</p>
+                            <div class="form-one">
+                                <form accept="#">
+                                    @csrf
+                                    <input type="text" placeholder="Full Name *">
+                                    <input type="text" placeholder="Phone">
+                                    <input type="text" placeholder="Email*">
+                                    <input type="text" placeholder="Address 1 *">
+                                    <input type="text" placeholder="Address 2">
+                                    <textarea name="message" placeholder="Notes about your order, Special Notes for Delivery"
+                                    rows="10"></textarea>
+                                    <br>
+                                @include('public.partials.paypal')
+                                </form>
+                            </div>
+
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
         </div>
     </section>
     <!--/#cart_items-->

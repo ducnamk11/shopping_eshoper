@@ -161,11 +161,13 @@ $(document).ready(function () {
             url: url,
             success: function (data) {
                 location.reload();
+                
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Add a product to Wish!',
-                    timer: 3000
+                    timer: 3000,
+                    showConfirmButton: false,
                 });
             }
         });
@@ -188,7 +190,8 @@ $(document).ready(function () {
                     position: 'top-end',
                     icon: 'success',
                     title: 'Delete a product from wish!',
-                    timer: 3000
+                    timer: 3000,
+                    showConfirmButton: false,
                 });
             }
         });

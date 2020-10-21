@@ -26,7 +26,7 @@ Route::get('/admin', 'AdminController@loginAdmin')->name('admin_login');
 Route::post('/admin', 'AdminController@postLoginAdmin')->name('admin_login_post');
 Route::get('/admin/logout', 'AdminController@postLogout')->name('admin_logout');
 
-Route::group(['prefix' => 'cart', 'middleware' => ['auth']], function () { //'
+Route::group(['prefix' => 'cart','middleware' => ['auth'] ], function () { //'
     Route::get('/', 'CartController@index')->name('cart_index');
     Route::get('/checkout', 'CartController@checkout')->name('cart_checkout');
     Route::get('/store/{id}', 'CartController@store')->name('cart_store');
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'cart', 'middleware' => ['auth']], function () { //'
     Route::get('/allDelete', 'CartController@allDelete')->name('cart_all_delete');
 });
 
-Route::group(['prefix' => 'wishlist',], function () { //'middleware' => ['auth']
+Route::group(['prefix' => 'wishlist', ], function () { //'middleware' => ['auth']
     Route::get('/', 'WishlistController@index')->name('wish_index');
     Route::get('/checkout', 'WishlistController@checkout')->name('wish_checkout');
     Route::get('/store/{id}', 'WishlistController@store')->name('wish_store');
