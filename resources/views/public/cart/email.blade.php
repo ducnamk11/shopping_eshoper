@@ -43,6 +43,14 @@
             </div>
 
             <div class="table-responsive cart_info  container">
+                <div>
+                    <h3>Custumer: {{$fullname}}</h3>
+                    <h3>Contact: {{$phone}}</h3>
+                    <h3>Address: {{$address}}</h3>
+                    <h3>Address: {{$email}}</h3>
+                    <hr>
+                </div>
+                <h2>Ordered Products</h2>
                 <table class="table table-condensed col-8">
                     <thead>
                         <tr class="cart_menu">
@@ -71,7 +79,7 @@
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
                                     <input data-url="{{route('cart_update',['id'=>$product->rowId])}}"
-                                        class="cart_quantity_input" type="number" name="quantity"
+                                        class="cart_quantity_input" type="text" name="quantity"
                                         value="{{$product->qty}}" autocomplete="off" size="2">
 
                                 </div>
@@ -100,48 +108,12 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="shopper-informations" style="margin:50px">
-                <div class="row">
-                    <div class="col-sm-10 clearfix">
-                        <div class="bill-to">
-                            <p>Bill To</p>
-                            <div class="form-one">
-                                <form action="{{route('order_store')}}" method="post">
-                                    @csrf
-                                    <input type="text" required name="fullname" placeholder="Full Name *">
-                                    <input type="text" required name="phone" placeholder="Phone">
-                                    <input type="text" required name="email" placeholder="Email*">
-                                    <input type="text" required name="address" placeholder="Address   *">
-                                    <textarea name="notice"
-                                        placeholder="Notes about your order, Special Notes for Delivery"
-                                        rows="10"></textarea> <br> <br>
-
-                                    <button type="submit" class=" btn-lg btn   btn-block pay_button"> Pay on
-                                        delivery</button>
-                                    <div>
-                                        <center>
-                                            <h3 style="font-style: italic">Or</h3>
-                                        </center>
-                                    </div>
-                                    <a href="{{ route('make.payment') }}"
-                                        class="btn btn-lg  btn-block  mt-3 paypal_button">
-                                        <img height="40px" src="{{asset('assets/public/images/cart/paypal.png')}}"
-                                            alt="">
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         </div>
     </section>
-
-
-
+    <!--/#cart_items-->
 </body>
+
 <script src="{{asset('assets/public/js/jquery.js')}}"></script>
 <script src="{{asset('assets/public/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/public/js/jquery.scrollUp.min.js')}}"></script>
