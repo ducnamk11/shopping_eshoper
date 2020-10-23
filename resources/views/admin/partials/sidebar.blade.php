@@ -53,6 +53,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('order_index')}}" class="nav-link">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <p>
+                            Order
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('slider_index')}}" class="nav-link">
                         <i class="nav-icon fas fa-sliders-h"></i>
                         <p>

@@ -2445,8 +2445,14 @@ textarea {
 .m-3{
     margin: 3px;
 }
-.paypal_button{
-    background-color: #e1b761;
+.pay_method_button{
+    width: 245px;
+    font-weight: bold;
+    font-size: 30px;
+    color: #e2e2e2;
+    line-height: 34px;
+    height: 52px;
+    background-color: #6a798e;
 }
  
 .pay_button{

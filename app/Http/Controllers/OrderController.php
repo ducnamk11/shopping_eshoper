@@ -22,38 +22,42 @@ class OrderController extends Controller
     //SAVE IN DB AND PAYMENT
     public function pay(Request $request)
     {
+        if ($request->pay_method == 'paycash') {
+            DB::beginTransaction();
+            try {
+                $email = $request->email;
+                Mail::send('public.cart.email', [
+                    'email' => $request->email,
+                    'fullname' => $request->fullname,
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                    'categories' => Category::where('parent_id', 0)->take(6)->get(),
+                    'products' => Cart::content(),
+                ], function ($message) use ($email) {
+                    $message->from('ducnamk1196@gmail.com', 'Eshopper');
+                    $message->sender('ducnamk1196@gmail.com', 'Eshopper');
+                    $message->to($email,   'Eshopper');
+                    $message->cc('ducnamk7476@gmail.com', 'Eshopper-cc');
+                    $message->subject('Eshopper');
+                });
+                foreach (Cart::content()->toArray() as $product) {
+                    Order::create(array_merge([
+                        'user_id' => auth()->user()->id,
+                        'product_id' => $product['id'],
+                        'quantity' => $product['qty'],
+                    ], $request->all()));
+                }
+                Cart::destroy();
 
-        //SAVE IN DB 
-        DB::beginTransaction();
-        try {
-            $email = $request->email;
-            Mail::send('public.cart.email', [
-                'email' => $request->email,
-                'fullname' => $request->fullname,
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'categories' => Category::where('parent_id', 0)->take(6)->get(),
-                'products' => Cart::content(),
-            ], function ($message) use ($email) {
-                $message->from('ducnamk1196@gmail.com', 'Eshopper');
-                $message->sender('ducnamk1196@gmail.com', 'Eshopper');
-                $message->to($email,   'Eshopper');
-                $message->cc('ducnamk7476@gmail.com', 'Eshopper-cc');
-                $message->subject('Eshopper');
-            });
-            foreach (Cart::content()->toArray() as $product) {
-                Order::create(array_merge([
-                    'user_id' => auth()->user()->id,
-                    'product_id' => $product['id'],
-                    'quantity' => $product['qty'],
-                ], $request->all()));
-            } 
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+            }
+            return redirect()->route('order_complete');
+        } else {
+            //Paypal
+            return redirect()->route('make_payment')->with('data',$request->all());
         }
-        return redirect()->route('order_complete');
     }
 
     public function complete()

@@ -36,10 +36,10 @@
     <section id="cart_items">
         <div class="container">
             <h3 style="color: green"> Thank you for your purchase at our store,
-                <br> we will quickly send the goods to you in the shortest time. </h3>
-
-                
-
+                <br> we will quickly send the goods to you in the shortest time.  
+                <br> You can check order in your mail. </h3>
+                <br>
+                <p> <a href="/"> back to home!</a></p>
         </div>
     </section>
     <!--/#cart_items-->

@@ -107,7 +107,7 @@
                         <div class="bill-to">
                             <p>Bill To</p>
                             <div class="form-one">
-                                <form action="{{route('order_store')}}" method="post">
+                                <form action="{{route('order_pay')}}" method="post">
                                     @csrf
                                     <input type="text" required name="fullname" placeholder="Full Name *">
                                     <input type="text" required name="phone" placeholder="Phone">
@@ -116,31 +116,62 @@
                                     <textarea name="notice"
                                         placeholder="Notes about your order, Special Notes for Delivery"
                                         rows="10"></textarea> <br> <br>
+                                    <div class="form-group">
+                                        <label class="col-xs-3 control-label">
+                                            <h3>Pay method</h3>
+                                        </label>
 
-                                    <button type="submit" class=" btn-lg btn   btn-block pay_button"> Pay on
-                                        delivery</button>
-                                    <div>
+                                        <label class=" col-xs-3 radio-inline">
+                                            <input type="radio" value="paycash" name="pay_method">  Pay cash  
+                                        </label>
+                                      
+                                        <label class=" col-xs-3 radio-inline">
+                                            <input type="radio" value="paypal" name="pay_method">  Pay Pal  
+                                        </label>
+
+                                        {{-- <div class="col-xs-9"> --}}
+
+                                        {{-- <div class="radio">
+                                                <label>
+                                                    <input name="sampleinlineradio" name="pay_method" value="paycash"
+                                                        type="radio">
+                                                    <button class=" btn pay_method_button"> Pay cash </button>
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input value="paypal" type="radio" name="pay_method1">
+                                                    <button class="btn pay_method_button">
+                                                        <img height="40px"
+                                                            src="{{asset('assets/public/images/cart/paypal.png')}}"
+                                        alt="">
+                                        </button>
+                                        </label>
+                                    </div> --}}
+                            </div>
+                        </div>
+                        <button type="submit" class=" btn-lg btn  btn-block pay_button"> Submit
+                        </button>
+                        {{-- <div>
                                         <center>
                                             <h3 style="font-style: italic">Or</h3>
                                         </center>
                                     </div>
-                                    <a href="{{ route('make.payment') }}"
-                                        class="btn btn-lg  btn-block  mt-3 paypal_button">
-                                        <img height="40px" src="{{asset('assets/public/images/cart/paypal.png')}}"
-                                            alt="">
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
+                                    <a href="{{ route('make_payment') }}"
+                        class="btn btn-lg btn-block mt-3 paypal_button">
+                        <img height="40px" src="{{asset('assets/public/images/cart/paypal.png')}}" alt="">
+                        </a> --}}
+
+
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
         </div>
+        </div>
+        </div>
     </section>
-
-
-
 </body>
 <script src="{{asset('assets/public/js/jquery.js')}}"></script>
 <script src="{{asset('assets/public/js/bootstrap.min.js')}}"></script>

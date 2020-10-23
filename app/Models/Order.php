@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $guarded = [];
+    const CONFIRMED = 1;
+    const UNCONFIRMED = 0;
 
     public function user()
     {

@@ -23,6 +23,7 @@
 <script src="{{asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('/assets/admin/plugins/boostrap/js/boostrap.js')}}"></script>
 <script src="{{asset('/assets/admin/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('/assets/admin/dist/js/main.js')}}"></script>
 @yield('js')
 </body>
 </html>

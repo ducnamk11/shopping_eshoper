@@ -28,17 +28,14 @@ Route::get('/admin/logout', 'AdminController@postLogout')->name('admin_logout');
 
 Route::group(['prefix' => 'order','middleware' => ['auth'] ], function () { //'
      Route::get('/checkout', 'OrderController@checkout')->name('order_checkout');
-    Route::post('/pay/', 'OrderController@pay')->name('order_store');
+    Route::post('/pay/', 'OrderController@pay')->name('order_pay');
     Route::get('/complete', 'OrderController@complete')->name('order_complete');
-    Route::get('/delete/{id}', 'OrderController@delete')->name('order_delete');
-    Route::get('/allDelete', 'OrderController@allDelete')->name('order_all_delete');
-});
+ });
 
 Route::group(['prefix' => 'paypal','middleware' => ['auth'] ], function () { //'
-    Route::get('handle-payment', 'PayPalController@handlePayment')->name('make.payment');
-    Route::get('cancel-payment', 'PayPalController@paymentCancel')->name('cancel.payment');
-    Route::get('payment-success', 'PayPalController@paymentSuccess')->name('success.payment');
-
+    Route::get('handle-payment', 'PayPalController@handlePayment')->name('make_payment');
+    Route::get('cancel-payment', 'PayPalController@paymentCancel')->name('cancel_payment');
+    Route::get('payment-success', 'PayPalController@paymentSuccess')->name('success_payment');
 });
 
 Route::group(['prefix' => 'cart','middleware' => ['auth'] ], function () { //'
@@ -124,6 +121,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:staff']], function () 
         Route::get('/edit/{id}', 'RoleController@edit')->name('role_edit');
         Route::post('/update/{id}', 'RoleController@update')->name('role_update');
         Route::get('/delete/{id}', 'RoleController@delete')->name('role_delete');
+    });
+    
+    Route::prefix('orders')->group(function () {
+        Route::get('/', 'AdminOrderController@index')->name('order_index');
+        Route::post('/store', 'AdminOrderController@store')->name('order_store');
+        Route::get('/update/{id}', 'AdminOrderController@update')->name('order_update');
+     
     });
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => []], function () {

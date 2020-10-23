@@ -21,9 +21,7 @@ class AdminController extends Controller
 
     public function loginAdmin()
     {
-        if (Auth::check()) {
-            return redirect()->route('admin_home');
-        }
+        Auth::guard($this->guardName)->logout();
         return view('login');
 
     }
