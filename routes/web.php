@@ -26,19 +26,19 @@ Route::get('/admin', 'AdminController@loginAdmin')->name('admin_login');
 Route::post('/admin', 'AdminController@postLoginAdmin')->name('admin_login_post');
 Route::get('/admin/logout', 'AdminController@postLogout')->name('admin_logout');
 
-Route::group(['prefix' => 'order','middleware' => ['auth'] ], function () { //'
-     Route::get('/checkout', 'OrderController@checkout')->name('order_checkout');
+Route::group(['prefix' => 'order', 'middleware' => ['auth']], function () { //'
+    Route::get('/checkout', 'OrderController@checkout')->name('order_checkout');
     Route::post('/pay/', 'OrderController@pay')->name('order_pay');
     Route::get('/complete', 'OrderController@complete')->name('order_complete');
- });
+});
 
-Route::group(['prefix' => 'paypal','middleware' => ['auth'] ], function () { //'
+Route::group(['prefix' => 'paypal', 'middleware' => ['auth']], function () { //'
     Route::get('handle-payment', 'PayPalController@handlePayment')->name('make_payment');
     Route::get('cancel-payment', 'PayPalController@paymentCancel')->name('cancel_payment');
     Route::get('payment-success', 'PayPalController@paymentSuccess')->name('success_payment');
 });
 
-Route::group(['prefix' => 'cart','middleware' => ['auth'] ], function () { //'
+Route::group(['prefix' => 'cart', 'middleware' => ['auth']], function () { //'
     Route::get('/', 'CartController@index')->name('cart_index');
     Route::get('/checkout', 'CartController@checkout')->name('cart_checkout');
     Route::get('/store/{id}', 'CartController@store')->name('cart_store');
@@ -47,7 +47,7 @@ Route::group(['prefix' => 'cart','middleware' => ['auth'] ], function () { //'
     Route::get('/allDelete', 'CartController@allDelete')->name('cart_all_delete');
 });
 
-Route::group(['prefix' => 'wishlist', ], function () { //'middleware' => ['auth']
+Route::group(['prefix' => 'wishlist',], function () { //'middleware' => ['auth']
     Route::get('/', 'WishlistController@index')->name('wish_index');
     Route::get('/checkout', 'WishlistController@checkout')->name('wish_checkout');
     Route::get('/store/{id}', 'WishlistController@store')->name('wish_store');
@@ -122,12 +122,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:staff']], function () 
         Route::post('/update/{id}', 'RoleController@update')->name('role_update');
         Route::get('/delete/{id}', 'RoleController@delete')->name('role_delete');
     });
-    
+
     Route::prefix('orders')->group(function () {
         Route::get('/', 'AdminOrderController@index')->name('order_index');
         Route::post('/store', 'AdminOrderController@store')->name('order_store');
         Route::get('/update/{id}', 'AdminOrderController@update')->name('order_update');
-     
+    });
+    Route::prefix('invoices')->group(function () {
+        Route::get('/', 'AdminInvoiceController@index')->name('invoice_index');
+        Route::get('/detail/{id}', 'AdminInvoiceController@detail')->name('invoice_detail');
+        Route::get('print/{id}', 'AdminInvoiceController@print')->name('invoice_print');
     });
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => []], function () {

@@ -122,52 +122,23 @@
                                         </label>
 
                                         <label class=" col-xs-3 radio-inline">
-                                            <input type="radio" value="paycash" name="pay_method">  Pay cash  
+                                            <input type="radio" value="paycash" name="pay_method"> Pay cash
                                         </label>
-                                      
+
                                         <label class=" col-xs-3 radio-inline">
-                                            <input type="radio" value="paypal" name="pay_method">  Pay Pal  
+                                            <input type="radio" value="paypal" name="pay_method"> Pay Pal
                                         </label>
 
-                                        {{-- <div class="col-xs-9"> --}}
-
-                                        {{-- <div class="radio">
-                                                <label>
-                                                    <input name="sampleinlineradio" name="pay_method" value="paycash"
-                                                        type="radio">
-                                                    <button class=" btn pay_method_button"> Pay cash </button>
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input value="paypal" type="radio" name="pay_method1">
-                                                    <button class="btn pay_method_button">
-                                                        <img height="40px"
-                                                            src="{{asset('assets/public/images/cart/paypal.png')}}"
-                                        alt="">
-                                        </button>
-                                        </label>
-                                    </div> --}}
-                            </div>
-                        </div>
-                        <button type="submit" class=" btn-lg btn  btn-block pay_button"> Submit
-                        </button>
-                        {{-- <div>
-                                        <center>
-                                            <h3 style="font-style: italic">Or</h3>
-                                        </center>
                                     </div>
-                                    <a href="{{ route('make_payment') }}"
-                        class="btn btn-lg btn-block mt-3 paypal_button">
-                        <img height="40px" src="{{asset('assets/public/images/cart/paypal.png')}}" alt="">
-                        </a> --}}
+                            </div>
+                            <button type="submit" class=" btn-lg btn  btn-block pay_button"> Submit
+                            </button>
 
-
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         </div>
         </div>

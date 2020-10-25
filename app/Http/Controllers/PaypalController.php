@@ -15,37 +15,7 @@ class PayPalController extends Controller
 {
     public function handlePayment(Request $request)
     {
-        $data = Session::get('data');
-        // dd($data);
-        $email = $data['email'];
-        Mail::send('public.cart.email', [
-            'email' =>  $data['email'],
-            'fullname' => $data['fullname'],
-            'phone' =>  $data['phone'],
-            'address' => $data['address'],
-            'categories' => Category::where('parent_id', 0)->take(6)->get(),
-            'products' => Cart::content(),
-        ], function ($message) use ($email) {
-            $message->from('ducnamk1196@gmail.com', 'Eshopper');
-            $message->sender('ducnamk1196@gmail.com', 'Eshopper');
-            $message->to($email,   'Eshopper');
-            $message->cc('ducnamk7476@gmail.com', 'Eshopper-cc');
-            $message->subject('Eshopper');
-        });
-        foreach (Cart::content()->toArray() as $product) {
-            Order::create( [
-                'user_id' => auth()->user()->id,
-                'product_id' => $product['id'],
-                'quantity' => $product['qty'],
-                'status' => 2,
-                'fullname' => $data['fullname'],
-                'phone' =>  $data['phone'],
-                'email' =>  $data['email'],
-                'address' =>  $data['address'],
-                'notice' =>  $data['notice'],
-            ] );
-        }
-        Cart::destroy();
+
 
         $product = [];
         $product['items'] = array_map(function ($item) {
@@ -63,7 +33,15 @@ class PayPalController extends Controller
         $product['total'] = Cart::total();
         $paypalModule = new ExpressCheckout;
         $res = $paypalModule->setExpressCheckout($product);
-        return redirect($res['paypal_link']);
+
+        //sendmail and save
+        $data = Session::get('data');
+        $cart = Cart::content()->toArray();
+        sendMail($data);
+        saveDataToTable($cart, $data, 2);
+        Cart::destroy();
+
+        return redirect($res['paypal_link'])->with('data',  $data);
     }
 
     public function paymentCancel()
@@ -79,16 +57,10 @@ class PayPalController extends Controller
         $response = $paypalModule->getExpressCheckoutDetails($request->token);
 
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+
             return view('public.cart.complete', [
                 'categories' => Category::where('parent_id', 0)->take(6)->get(),
             ]);
         }
-    }
-
-    public function saveToOrder($data)
-    {
-
-
-      
     }
 }

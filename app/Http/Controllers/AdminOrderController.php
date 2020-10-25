@@ -10,7 +10,7 @@ class AdminOrderController extends Controller
     public function index()
     {
         return view('admin.order.index', [
-            'orders' => Order::orderBy('status')->paginate(20),
+            'orders' => Order::where()->paginate(20),
         ]);
     }
     public function update(Request $request, $id)

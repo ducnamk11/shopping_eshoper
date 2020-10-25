@@ -17,8 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('product_id');
+            $table->integer('invoice_id');
             $table->integer('quantity');
-            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

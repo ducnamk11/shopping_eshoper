@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "barryvdh/laravel-dompdf": "^0.8.7",
         "bumbummen99/shoppingcart": "^3.0",
         "ckeditor/ckeditor": "^4.15",
         "fideloper/proxy": "^4.2",
@@ -47,7 +48,9 @@
             "database/factories"
         ],
         "files":[
-            "app/Helpers/Setting/getConfigValue.php"
+            "app/Helpers/Setting/getConfigValue.php",
+            "app/Helpers/Order/saveDataToTable.php",
+            "app/Helpers/Order/sendMail.php"
         ]
     },
     "autoload-dev": {
