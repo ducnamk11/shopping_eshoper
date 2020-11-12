@@ -45,8 +45,10 @@ class HomeController extends Controller
 
     public function product_detail($id)
     {
+        $product = Product::findOrFail($id);
         return view('public.product_detail', [
-            'product' => Product::findOrFail($id),
+            'product' => $product,
+            'reviews' => $product->reviews
         ]);
     }
 }
