@@ -9,7 +9,7 @@
 @endsection
 @section('content')
     <div class="content-wrapper">
-    @include('admin.partials.content-header',['name'=>'Role', 'key'=>'admin.home'])
+    @include('admin.partials.content-header',['name'=>'Role', 'key'=>' home'])
     <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">

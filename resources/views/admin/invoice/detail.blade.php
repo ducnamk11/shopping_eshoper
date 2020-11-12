@@ -67,7 +67,6 @@
                             <th> {{number_format($order->product->price)}} đ</th>
                             <th> {{number_format($order->quantity *$order->product->price)}} đ </th>
                         </tr>
-
                         @endforeach
                     </tbody>
                    
