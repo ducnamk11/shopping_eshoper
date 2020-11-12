@@ -1,24 +1,9 @@
-- CAI CKEDITOR va FFILEMANAGER
+database Name: eshoper
 
-    composer require unisharp/laravel-filemanager
+php artisan db:seed 
+=> 
+    access admin page:
+        link:       http://localhost:8000/admin
+        username:   admin@gmail.com
+        password:   123
 
-    composer require ckeditor/ckeditor
-
-    va dung https://github.com/UniSharp/laravel-filemanager/issues/20          để hiện thị nút BROWER SERVER khi chọn ảnh
-
-    APP_URL=http://localhost:8000 (env)
-
-
-    ngoia ra dung Froala editor (it loi)
-
-
-
-- shopping cart
-https://github.com/bumbummen99/LaravelShoppingcart
-
-
-
-
---need to 
-
-add link for slider
