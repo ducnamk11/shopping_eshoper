@@ -34,7 +34,7 @@ class AdminController extends Controller
             'password' => 'required|min:2'
         ]);
         if (Auth::guard($this->guardName)->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->to('/admin/home');
+            return redirect()->to('/admin/categories');
         }
         return redirect()->back()->withErrors([  'Password or Email was wrong!']);
     }
