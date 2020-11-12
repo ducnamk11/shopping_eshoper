@@ -28,6 +28,7 @@ class HomeController extends Controller
     public function category($id)
     {
         $category  =  Category::findOrFail($id);
+
         return view('public.category', [
             'category_name' => $category->name,
             'products_category' => $category->products()->paginate(12),
@@ -37,6 +38,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $key = $request->search;
+
         return view('public.search', [
             'key' => $key,
             'results' => Product::where('name', 'LIKE', '%' . $key . '%')->paginate(12),
@@ -46,6 +48,7 @@ class HomeController extends Controller
     public function product_detail($id)
     {
         $product = Product::findOrFail($id);
+
         return view('public.product_detail', [
             'product' => $product,
             'reviews' => $product->reviews

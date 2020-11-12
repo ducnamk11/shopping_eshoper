@@ -2463,3 +2463,11 @@ textarea {
     height: 60px;
     background-color: #227cb8;
 }
+.register-btn{
+    background-color: #3285f9;
+    color:#ffffff;
+}
+.login-by-google-btn { 
+    background-color: #f37132;
+    color:#ffffff;
+}

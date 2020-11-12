@@ -76,18 +76,18 @@
                     <!--/login form-->
                 </div>
                 <div class="col-sm-1">
-                     
+
                 </div>
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form">
                         <h2>Login by socialite</h2>
-                        <div class="social-auth-links text-center mb-3"> 
-                            <a href="{{route('admin_redirect')}}" class="btn btn-lg  btn-block btn-primary">
-                                Sign in using Facebook
-                             </a>
+                        <div class="social-auth-links text-center mb-3">
+                            <a href="{{route('admin_redirect')}}" class="btn btn-lg  btn-block login-by-google-btn">
+                                Sign in using Google
+                            </a>
                             <p>or</p>
-                            <a href="{{route('admin_redirect')}}" class="btn btn-lg  btn-block btn-danger">
-                               Sign in using Google+
+                            <a href="{{route('register')}}" class="btn btn-lg  btn-block register-btn">
+                                Register a new account
                             </a>
                         </div>
                     </div>

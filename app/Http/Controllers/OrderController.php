@@ -23,7 +23,7 @@ class OrderController extends Controller
     {
         if ($request->pay_method == 'paycash') {
             sendMail($request->all());
-            saveDataToTable(Cart::content()->toArray(), $request->all(),0); 
+            saveDataToTable(Cart::content()->toArray(), $request->all(), 0);
             Cart::destroy();
             return redirect()->route('order_complete');
         } else {

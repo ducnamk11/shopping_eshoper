@@ -18,7 +18,6 @@ class PermissionController extends Controller
     {
         Permission::create(['name' => $request->name]);
         return redirect()->route('permission_index')->with('success', 'Create Permission successfully!');
-
     }
 
     public function delete($id)

@@ -32,10 +32,12 @@ class AdminProductController extends Controller
 
     public function create()
     {
-        return view('admin.product.add',
+        return view(
+            'admin.product.add',
             [
                 'htmlOption' => $this->getCategory($parentId = 0)
-            ]);
+            ]
+        );
     }
 
     public function edit($id)
@@ -50,7 +52,6 @@ class AdminProductController extends Controller
             'product' => $product,
             'htmlOption' => $this->getCategory($product->category_id)
         ]);
-
     }
 
     public function store(StoreProduct $request)
@@ -69,7 +70,6 @@ class AdminProductController extends Controller
                 'user_id' => auth()->user()->id,
             ]);
             //insert data to product_images
-
             if ($request->hasFile('image_path')) {
                 foreach ($request->image_path as $file) {
                     $dataProductImageDetail = $this->uploadFileTraitMultiple($file, 'product');
@@ -86,19 +86,17 @@ class AdminProductController extends Controller
                     //insert to tags table
                     $tagInstance = Tag::firstOrCreate(['name' => $tag]);
                     $tagId[] = $tagInstance['id'];
-
                 }
                 $product->tags()->attach($tagId);
             }
-            DB::commit();
-            return redirect()->route('product_index')->with('success', 'Create product successfully!');
 
+            DB::commit();
+
+            return redirect()->route('product_index')->with('success', 'Create product successfully!');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
         }
-
-
     }
 
     public function update(UpdateProduct $request, $id)
@@ -135,19 +133,15 @@ class AdminProductController extends Controller
                     //insert to tags table
                     $tagInstance = Tag::firstOrCreate(['name' => $tag]);
                     $tagId[] = $tagInstance['id'];
-
                 }
                 $product->tags()->sync($tagId);
             }
             DB::commit();
             return redirect()->route('product_index')->with('success', 'Updated product successfully!');
-
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
         }
-
-
     }
 
     public function delete($id)
@@ -156,19 +150,17 @@ class AdminProductController extends Controller
         $product_image = Product::findOrFail($id)->images;
 
         //remove image detail from folder
-        foreach ($product_image as $detailImage){
+        foreach ($product_image as $detailImage) {
             $img = str_replace('/storage', '/public', $detailImage->image_path);
             Storage::delete($img);
         }
         //remove image feature from folder
         $productImage = str_replace('/storage', '/public', $product->feature_image_path);
-         Storage::delete($productImage);
+        Storage::delete($productImage);
 
         $product->delete();
 
         return redirect()->route('product_index')->with('success', 'Deleted product successfully!');
-
-
     }
 
     public function getCategory($parentId)
@@ -177,5 +169,4 @@ class AdminProductController extends Controller
         $recusive = new Recusive($data);
         return $recusive->categoryRecusive($parentId);
     }
-
 }

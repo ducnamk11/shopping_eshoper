@@ -11,20 +11,24 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return view('admin.role.index',
+        return view(
+            'admin.role.index',
             [
                 'roles' => Role::all(),
                 'permissions' => Permission::all(),
-            ]);
+            ]
+        );
     }
     public function edit($id)
     {
-        return view('admin.role.edit',
+        return view(
+            'admin.role.edit',
             [
                 'role' => Role::findOrFail($id),
                 'roles' => Role::all(),
                 'permissions' => Permission::all(),
-            ]);
+            ]
+        );
     }
 
     public function store(RoleStore $request)
@@ -35,7 +39,6 @@ class RoleController extends Controller
             $role->givePermissionTo($request->permission);
 
             return redirect()->route('role_index')->with('success', 'Deleted product successfully!');
-
         }
     }
 

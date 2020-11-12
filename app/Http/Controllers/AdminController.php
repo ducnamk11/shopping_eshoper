@@ -13,7 +13,6 @@ class AdminController extends Controller
 
     protected $guardName = 'staff';
 
-
     public function index()
     {
         return view('admin.home');
@@ -23,12 +22,10 @@ class AdminController extends Controller
     {
         Auth::guard($this->guardName)->logout();
         return view('login');
-
     }
 
     public function postLoginAdmin(Request $request)
     {
-
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|min:2'
@@ -36,7 +33,7 @@ class AdminController extends Controller
         if (Auth::guard($this->guardName)->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->to('/admin/categories');
         }
-        return redirect()->back()->withErrors([  'Password or Email was wrong!']);
+        return redirect()->back()->withErrors(['Password or Email was wrong!']);
     }
 
     public function postLogout()

@@ -57,14 +57,14 @@ class StaffController extends Controller
             'password' => $request->password,
         ]);
         $staff->syncRoles($request->input('role'));
-        return redirect()->route('staff_index')->with('success', 'Updated Staff successfully!');
 
+        return redirect()->route('staff_index')->with('success', 'Updated Staff successfully!');
     }
 
     public function delete($id)
     {
         Staff::findOrFail($id)->delete();
-        return redirect()->route('staff_index')->with('success', 'Deleted Staff successfully!');
 
+        return redirect()->route('staff_index')->with('success', 'Deleted Staff successfully!');
     }
 }

@@ -38,8 +38,6 @@ class SliderController extends Controller
             'image_path' => $dataImage['file_path'],
         ]));
         return redirect()->route('slider_index')->with('success', 'Create Slider successfully!');
-
-
     }
 
 
@@ -50,22 +48,18 @@ class SliderController extends Controller
         ]);
     }
 
-
     public function update(SlideUpdate $request, $id)
     {
         $slider = Slider::findOrFail($id);
         //remove image feature from folder
         $sliderImage = str_replace('/storage', '/public', $slider->image_path);
         Storage::delete($sliderImage);
-
         $dataImage = $this->uploadFileTrait($request, 'image_path', 'slider');
         $slider->update(array_merge($request->all(), [
             'image_name' => $dataImage['file_name'],
             'image_path' => $dataImage['file_path'],
         ]));
         return redirect()->route('slider_index')->with('success', 'Updated Slider successfully!');
-
-
     }
 
     public function delete($id)
@@ -76,6 +70,5 @@ class SliderController extends Controller
 
         $slider->delete();
         return redirect()->route('slider_index')->with('success', 'Deleted Slider successfully!');
-
     }
 }

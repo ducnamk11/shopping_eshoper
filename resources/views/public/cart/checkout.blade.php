@@ -30,7 +30,6 @@
         href="{{asset('assets/public/images/ico/apple-touch-icon-57-precomposed.png')}}">
 </head>
 <!--/head-->
-
 <body>
     @include('public.partials.header')
     <section id="cart_items">
@@ -41,7 +40,6 @@
                     <li class="active">Check out</li>
                 </ol>
             </div>
-
             <div class="table-responsive cart_info  container">
                 <table class="table table-condensed col-8">
                     <thead>
@@ -69,12 +67,7 @@
                                 <p>{{number_format($product->price)}}</p>
                             </td>
                             <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <input data-url="{{route('cart_update',['id'=>$product->rowId])}}"
-                                        class="cart_quantity_input" type="number" name="quantity"
-                                        value="{{$product->qty}}" autocomplete="off" size="2">
-
-                                </div>
+                                <center>{{$product->qty}}</center>
                             </td>
                             <td class="cart_total">
                                 <p>{{number_format($product->price *$product->qty )}} đ</p>
@@ -84,7 +77,6 @@
                                     class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
-
                         @endforeach
                         <tr>
                             <td></td>
@@ -100,7 +92,6 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="shopper-informations" style="margin:50px">
                 <div class="row">
                     <div class="col-sm-10 clearfix">
@@ -116,24 +107,17 @@
                                     <textarea name="notice"
                                         placeholder="Notes about your order, Special Notes for Delivery"
                                         rows="10"></textarea> <br> <br>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label">
-                                            <h3>Pay method</h3>
-                                        </label>
-
+                                    <div class="form-group m-4">
                                         <label class=" col-xs-3 radio-inline">
-                                            <input type="radio" value="paycash" name="pay_method"> Pay cash
+                                            <input checked type="radio" value="paycash" name="pay_method"> Pay cash
                                         </label>
-
                                         <label class=" col-xs-3 radio-inline">
                                             <input type="radio" value="paypal" name="pay_method"> Pay Pal
                                         </label>
-
                                     </div>
                             </div>
                             <button type="submit" class=" btn-lg btn  btn-block pay_button"> Submit
                             </button>
-
                             </form>
                         </div>
                     </div>

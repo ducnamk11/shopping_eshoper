@@ -20,7 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('user_id');
             $table->string('email');
             $table->string('phone');
-            $table->string('notice');
+            $table->string('notice')->nullable();
             $table->string('pay_method'); 
             $table->integer('total');
             $table->integer('status')->default(0);

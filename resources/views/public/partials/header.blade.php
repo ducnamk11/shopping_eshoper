@@ -16,15 +16,15 @@
                 <div class="col-sm-6">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{getConfigValueFromSetting('facebook')}}"><i class="fa fa-facebook"
+                            <li><a target="_blank" href="{{getConfigValueFromSetting('facebook')}}"><i class="fa fa-facebook"
                                         target="_blank"></i></a></li>
-                            <li><a href="{{getConfigValueFromSetting('twitter')}}"><i class="fa fa-twitter"></i></a>
+                            <li><a target="_blank" href="{{getConfigValueFromSetting('twitter')}}"><i class="fa fa-twitter"></i></a>
                             </li>
-                            <li><a href="{{getConfigValueFromSetting('linkedin')}}"><i class="fa fa-linkedin"></i></a>
+                            <li><a target="_blank"  href="{{getConfigValueFromSetting('linkedin')}}"><i class="fa fa-linkedin"></i></a>
                             </li>
-                            <li><a href="{{getConfigValueFromSetting('dribbble')}}"><i class="fa fa-dribbble"></i></a>
+                            <li><a target="_blank"  href="{{getConfigValueFromSetting('dribbble')}}"><i class="fa fa-dribbble"></i></a>
                             </li>
-                            <li><a href="{{getConfigValueFromSetting('google')}}"><i class="fa fa-google-plus"></i></a>
+                            <li><a target="_blank"  href="{{getConfigValueFromSetting('google')}}"><i class="fa fa-google-plus"></i></a>
                             </li>
                         </ul>
                     </div>

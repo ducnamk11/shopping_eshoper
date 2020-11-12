@@ -20,7 +20,6 @@ class MenuController extends Controller
 
     public function index()
     {
-
         return view('admin.menu.index', [
             'menus' => $this->menu->latest()->paginate(5),
         ]);
@@ -40,7 +39,6 @@ class MenuController extends Controller
             'slug' => Str::slug($request->name)
         ]));
         return redirect()->route('menu_index')->with('success', 'Create menu successfully!');
-
     }
 
     public function edit($id)
@@ -50,7 +48,6 @@ class MenuController extends Controller
             'menu' => $menu,
             'optionSelect' => $this->menuRecusive->menuRecusiveEdit($menu->parent_id)
         ]);
-
     }
 
     public function update(Request $request, $id)
@@ -58,7 +55,8 @@ class MenuController extends Controller
         $this->menu->find($id)->update(
             array_merge($request->all(), [
                 'slug' => Str::slug($request->name)
-            ]));
+            ])
+        );
 
         return redirect()->route('menu_index')->with('success', 'Update menu successfully!');
     }

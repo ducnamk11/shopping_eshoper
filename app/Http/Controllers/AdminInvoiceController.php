@@ -14,18 +14,21 @@ class AdminInvoiceController extends Controller
             'invoices' => Invoice::latest()->paginate(20)
         ]);
     }
+
     public function detail($id)
     {
         return view('admin.invoice.detail', [
             'invoice' => Invoice::findOrFail($id),
         ]);
     }
+
     public function  print($id)
     {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->print_convert($id));
         return $pdf->stream();
     }
+
     public function  print_convert($id)
     {
         $invoice = Invoice::findOrFail($id);
@@ -39,7 +42,6 @@ class AdminInvoiceController extends Controller
                         <td>' .  $order->quantity * $order->product->price  . 'vnd </td> 
                         </tr>';
         };
-
 
         $html = '
         <style>

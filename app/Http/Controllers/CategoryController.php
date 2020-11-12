@@ -39,18 +39,18 @@ class CategoryController extends Controller
             'parent_id' => $request->parent_id,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()->route('category_index')->with('success', 'Create category successfully!');
 
+        return redirect()->route('category_index')->with('success', 'Create category successfully!');
     }
 
     public function edit($id)
     {
         $category = $this->category->findOrFail($id);
+
         return view('admin.category.edit', [
             'category' => $category,
             'htmlOption' => $this->getCategory($category['parent_id'])
         ]);
-
     }
 
     public function update(Request $request, $id)
@@ -67,6 +67,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $this->category->findOrFail($id)->delete();
+
         return redirect()->route('category_index')->with('success', 'Delete category successfully!');
     }
 
@@ -74,7 +75,7 @@ class CategoryController extends Controller
     {
         $data = $this->category->all();
         $recusive = new Recusive($data);
+
         return $recusive->categoryRecusive($parentId);
     }
-
 }
