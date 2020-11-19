@@ -24,8 +24,8 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'product_id');
-    } 
-       public function reviews()
+    }
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
@@ -35,7 +35,7 @@ class Product extends Model
         return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id')
             ->withTimestamps();
     }
-    
+
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class);

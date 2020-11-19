@@ -76,7 +76,7 @@ return [
         ],
         'staffs' => [
             'driver' => 'eloquent',
-            'model' =>\App\Modes\Staff::class,
+            'model' =>\App\Models\Staff::class,
         ],
 
         // 'users' => [

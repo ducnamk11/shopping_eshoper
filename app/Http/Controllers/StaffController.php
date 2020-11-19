@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StaffStore;
 use App\Http\Requests\StaffUpdate;
-use App\Modes\Staff;
+use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;

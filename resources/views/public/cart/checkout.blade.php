@@ -30,6 +30,7 @@
         href="{{asset('assets/public/images/ico/apple-touch-icon-57-precomposed.png')}}">
 </head>
 <!--/head-->
+
 <body>
     @include('public.partials.header')
     <section id="cart_items">
@@ -100,16 +101,17 @@
                             <div class="form-one">
                                 <form action="{{route('order_pay')}}" method="post">
                                     @csrf
-                                    <input type="text" required name="fullname" placeholder="Full Name *">
-                                    <input type="text" required name="phone" placeholder="Phone">
-                                    <input type="text" required name="email" placeholder="Email*">
-                                    <input type="text" required name="address" placeholder="Address   *">
-                                    <textarea name="notice"
+                                    <input required type="text" required name="fullname" placeholder="Full Name *">
+                                    <input required type="text" required name="phone" placeholder="Phone">
+                                    <input required type="text" required name="email" placeholder="Email*">
+                                    <input required type="text" required name="address" placeholder="Address   *">
+                                    <textarea name="notice" required
                                         placeholder="Notes about your order, Special Notes for Delivery"
                                         rows="10"></textarea> <br> <br>
-                                    <div class="form-group m-4">
-                                        <label class=" col-xs-3 radio-inline">
-                                            <input checked type="radio" value="paycash" name="pay_method"> Pay cash
+                                    <div class="form-group pay-method">
+                                        <label class=" col-xs-3  ">
+                                            <input checked type="radio" value="paycash" name="pay_method">
+                                            Pay cash
                                         </label>
                                         <label class=" col-xs-3 radio-inline">
                                             <input type="radio" value="paypal" name="pay_method"> Pay Pal

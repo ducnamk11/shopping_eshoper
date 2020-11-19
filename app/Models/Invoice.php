@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-     protected $guarded = [];
+    protected $guarded = [];
     public function orders()
     {
         return $this->hasMany(Order::class);

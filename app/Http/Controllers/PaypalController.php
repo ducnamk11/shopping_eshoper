@@ -15,8 +15,6 @@ class PayPalController extends Controller
 {
     public function handlePayment(Request $request)
     {
-
-
         $product = [];
         $product['items'] = array_map(function ($item) {
             return [

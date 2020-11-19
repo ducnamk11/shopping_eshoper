@@ -6,7 +6,7 @@ use App\Models\Slider;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use App\Modes\Staff;
+use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
